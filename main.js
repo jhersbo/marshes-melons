@@ -68,6 +68,7 @@ async function switchPage(page){
         pages['score'].style.display = 'none'
         pages['postGame'] = currentPage
         document.getElementById('final-time').textContent = `Great Job! You collected all 12 melons in ${time} seconds!`
+        await registerUser(regData)
     }
     return currentPage
 }
