@@ -14,7 +14,8 @@ let landingButtons = {
     playAgain: document.getElementById('play-again')
 }
 
-// let gameRunning = false
+let gameRunning = false
+auth = true
 switchPage('landingPage')
 //Hate the way I built this function, but the .style method wouldn't recognize "pages[page] object, otherwise I would've just made a generic pages[page] statement."
 async function switchPage(page){

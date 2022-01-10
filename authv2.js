@@ -33,28 +33,36 @@ async function registerUser(data){
     }
 }
 
-async function queryUser(data){
-    let response = await fetch(`https://marshes-scoring-api.herokuapp.com/users/${data.username}`) 
-    if(response.status === 200){
-        console.log(response.json())
+async function validateUser(username){
+    let response = await fetch(`https://marshes-scoring-api.herokuapp.com/users/${username}`,{
+        method: 'GET'
+    })
+    let parsedResponse = response.json().then((data)=>{
+        return data.user[0]
+    })
+    //need to write seperate async function to parse the response
+    if(response.ok && parsedResponse.username === parsedResponse.username && parsedResponse.password === inputs.loginPass.value){
+        console.log('True')
+        return true
     }else{
-        console.log(`Unable to find user. Response: ${response.json()}`)
+        console.log(`Unable to find user.`)
+        return false
     }
 }
-
-
 
 let regData;
 formButtons['register'].addEventListener('click', async e =>{
     e.preventDefault();
-    regData = packageRegData()
-    await queryUser(regData)
-    switchPage('game')
+    if(await validateUser(inputs.userRegistration.value)){
+        switchPage('game')
+    }
+    
 })
 
 formButtons['login'].addEventListener('click', async e =>{
     e.preventDefault();
-
-    
-    switchPage('game')
+    if(await validateUser(inputs.loginUser.value)){
+        // auth = true
+        switchPage('game')
+    }
 })
