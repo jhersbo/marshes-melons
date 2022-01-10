@@ -37,11 +37,10 @@ async function validateUser(username){
     let response = await fetch(`https://marshes-scoring-api.herokuapp.com/users/${username}`,{
         method: 'GET'
     })
-    let parsedResponse = response.json().then((data)=>{
+    let parsedResponse = await response.json().then((data)=>{
         return data.user[0]
     })
-    //need to write seperate async function to parse the response
-    if(response.ok && parsedResponse.username === parsedResponse.username && parsedResponse.password === inputs.loginPass.value){
+    if(response.ok && parsedResponse.username === inputs.loginUser.value && parsedResponse.password === inputs.loginPass.value){
         console.log('True')
         return true
     }else{
@@ -62,7 +61,9 @@ formButtons['register'].addEventListener('click', async e =>{
 formButtons['login'].addEventListener('click', async e =>{
     e.preventDefault();
     if(await validateUser(inputs.loginUser.value)){
-        // auth = true
+        auth = true
         switchPage('game')
+    }else{
+        window.alert('Login Failed! Please refresh and try again.')
     }
 })
