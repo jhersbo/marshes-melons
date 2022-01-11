@@ -17,7 +17,6 @@ function cycle(){
         stopWatch.textContent = `Time: ${sec}.${ms} seconds`
         setTimeout(cycle, 100)
     }
-    console.log(`${sec}.${ms}`)
     return time
 }
 function stopTimer(){

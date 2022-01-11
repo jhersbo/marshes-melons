@@ -74,22 +74,25 @@ function intakeLoginData(){
 }
 
 let regData;
+let user;
 formButtons['register'].addEventListener('click', async e =>{
     e.preventDefault();
     if(await registerUser()){
+        user = inputs.userRegistration.value
         switchPage('game')
     }else{
         window.alert('Registration Failed! Please refresh and try again.')
     }
-    
+    return user
 })
 
 formButtons['login'].addEventListener('click', async e =>{
     e.preventDefault();
     if(await validateUser(inputs.loginUser.value)){
-        auth = true
+        user = inputs.loginUser.value
         switchPage('game')
     }else{
         window.alert('Login Failed! Please refresh and try again.')
     }
+    return user
 })
