@@ -53,7 +53,6 @@ async function switchPage(page){
     }
     //postgame page condition
     if(page === 'postGame' && !gameRunning){
-        console.log('postgame')
         pages['landingPage'].style.display = 'none'
         pages['registrationPage'].style.display = 'none'
         pages['loginPage'].style.display = 'none'
@@ -68,7 +67,8 @@ async function switchPage(page){
         pages['score'].style.display = 'none'
         pages['postGame'] = currentPage
         document.getElementById('final-time').textContent = `Great Job! You collected all 12 melons in ${time} seconds!`
-        await updateScore(user)
+        let numTime = Number(time)
+        await updateScore(user, numTime)
     }
     return currentPage
 }

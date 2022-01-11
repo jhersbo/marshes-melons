@@ -1,23 +1,30 @@
 //packages score
 function packageScore(){
-    return {
-        score: time
-    }
+    return JSON.stringify({
+        score: Number(time)
+    })
 }
 
 //function to update user's score upon finishing the game
-async function updateScore(username){
+async function updateScore(username, time){
     let response = await fetch(`https://marshes-scoring-api.herokuapp.com/users/${username}`,{
         method: 'PUT',
-        body: JSON.stringify(packageScore())
+        headers: {
+            'Content-Type': 'application/json'  
+        },
+        body: JSON.stringify({score: time})
     })
     let parsedResponse = await response.json().then((data)=>{
-        return data.user[0]
+        return data
     })
+    console.log(username)
+    console.log(JSON.stringify({score: time}))
     console.log(parsedResponse)
+    // console.log(parsedResponse)
     // if(parsedResponse.score === JSON.stringify(packageScore())){
     //     console.log(`Score updated: ${parsedResponse.score}`)
     // }else{
     //     console.log('Something went wrong.')
     // }
+    return parsedResponse
 }
