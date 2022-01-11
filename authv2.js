@@ -13,7 +13,7 @@ function packageRegData(){
     let obj = {
         username: inputs.userRegistration.value,
         password: passwordMatch(),
-        score: null
+        score: 10000 //set it as a high number so the query will reliably descriminate
     }
     return JSON.stringify(obj)
 }
