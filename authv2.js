@@ -13,23 +13,23 @@ function packageRegData(){
     let obj = {
         username: inputs.userRegistration.value,
         password: passwordMatch(),
-        score: time
+        score: null
     }
     return JSON.stringify(obj)
 }
 
-async function registerUser(data){
+async function registerUser(){
     let response = await fetch('https://marshes-scoring-api.herokuapp.com/users', {
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: packageRegData()
     })
-    if(response.status === 200){
-        console.log(response.json())
+    if(response.ok){
+        return true
     }else{
-        console.log(`Unable to register user. Response: ${response.json()}`)
+        return false
     }
 }
 
@@ -41,19 +41,45 @@ async function validateUser(username){
         return data.user[0]
     })
     if(response.ok && parsedResponse.username === inputs.loginUser.value && parsedResponse.password === inputs.loginPass.value){
-        console.log('True')
         return true
     }else{
-        console.log(`Unable to find user.`)
         return false
     }
+}
+
+//Verify that passwords match
+function passwordMatch(){
+    if (inputs.userRegPass1.value === inputs.userRegPass2.value){
+       return inputs.userRegPass1.value
+    }else{
+        window.alert('Passwords do not match. Please try again.')
+    }
+}
+
+//Packaging data
+function intakeRegData(){
+    let regData = {
+        username: inputs.userRegistration.value,
+        password: passwordMatch(),
+    }
+    return regData;
+}
+
+function intakeLoginData(){
+    let loginData = {
+        username: inputs.loginUser.value,
+        password: inputs.loginPass.value
+    }
+    return loginData;
 }
 
 let regData;
 formButtons['register'].addEventListener('click', async e =>{
     e.preventDefault();
-    if(await validateUser(inputs.userRegistration.value)){
+    if(await registerUser()){
         switchPage('game')
+    }else{
+        window.alert('Registration Failed! Please refresh and try again.')
     }
     
 })

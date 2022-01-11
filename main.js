@@ -15,7 +15,6 @@ let landingButtons = {
 }
 
 let gameRunning = false
-auth = true
 switchPage('landingPage')
 //Hate the way I built this function, but the .style method wouldn't recognize "pages[page] object, otherwise I would've just made a generic pages[page] statement."
 async function switchPage(page){
@@ -34,7 +33,7 @@ async function switchPage(page){
         pages['landingPage'] = currentPage
     }
     //game page condition
-    if(page === 'game' && !gameRunning && auth){
+    if(page === 'game' && !gameRunning){
         pages['landingPage'].style.display = 'none'
         pages['registrationPage'].style.display = 'none'
         pages['loginPage'].style.display = 'none'
@@ -83,7 +82,6 @@ function wait(ms){
 
 //function to play again
 function playAgain(){
-    auth = true;
     //jQuery for poorly-behaving element
     $('#post-game').hide(100)
     sec = 0
