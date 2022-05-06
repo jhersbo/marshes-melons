@@ -11,6 +11,10 @@
     "license": "ISC",
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
-        "live-server": "^1.1.0"
+        "live-server": "^1.1.0",
+        "typescript": "^4.6.4"
+    },
+    "devDependencies": {
+        "@types/jquery": "^3.5.14"
     }
 }

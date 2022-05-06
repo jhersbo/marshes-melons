@@ -1,4 +1,4 @@
-let pages = {
+let pages:any = {
     landingPage: document.getElementById('landing-page-container'),
     registrationPage: document.getElementById('registration-container'),
     loginPage: document.getElementById('login-container'),
@@ -8,7 +8,7 @@ let pages = {
     postGame: document.getElementById('post-game')
 }
 
-let landingButtons = {
+let landingButtons:any = {
     loginSubmit: document.getElementById('login-submit'),
     registerSubmit: document.getElementById('register-submit'),
     playAgain: document.getElementById('play-again')
@@ -17,7 +17,7 @@ let landingButtons = {
 let gameRunning = false
 switchPage('landingPage')
 //Hate the way I built this function, but the .style method wouldn't recognize "pages[page] object, otherwise I would've just made a generic pages[page] statement."
-async function switchPage(page){
+async function switchPage(page: string){
     let currentPage = pages['landingPage']
     //landing page condition
     if(page === 'landingPage'){
@@ -74,7 +74,7 @@ async function switchPage(page){
 }
 
 //lil timer function
-function wait(ms){
+function wait(ms: number | undefined){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 

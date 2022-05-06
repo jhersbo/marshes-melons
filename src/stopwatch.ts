@@ -1,9 +1,9 @@
-let stopWatch = document.getElementById('stopwatch')
+let stopWatch:HTMLElement | null = document.getElementById('stopwatch')
 
-let sec = 0;
-let ms = 0;
-let time;
-let stopTime = false
+let sec:any = 0;
+let ms:any = 0;
+let time: string;
+let stopTime: boolean = false
 function cycle(){
     time = `${sec}.${ms}`
     if (stopTime === false){

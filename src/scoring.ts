@@ -6,7 +6,7 @@ function packageScore(){
 }
 
 //function to update user's score upon finishing the game
-async function updateScore(username, time){
+async function updateScore(username:string, time:string){
     let response = await fetch(`https://marshes-scoring-api.herokuapp.com/users/${username}`,{
         method: 'PUT',
         headers: {

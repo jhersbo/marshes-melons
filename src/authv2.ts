@@ -1,16 +1,16 @@
-let inputs = {
+let inputs:any = {
     userRegistration: document.getElementById('username-input'),
     userRegPass1: document.getElementById('password1'),
     userRegPass2: document.getElementById('password2'),
     loginUser: document.getElementById('login-username'),
     loginPass: document.getElementById('login-password'),
 }
-let formButtons = {
+let formButtons:any = {
     register: document.getElementById('register-submit'),
     login: document.getElementById('login-submit'),
 }
 function packageRegData(){
-    let obj = {
+    let obj:any|null = {
         username: inputs.userRegistration.value,
         password: passwordMatch(),
         score: 10000 //set it as a high number so the query will reliably descriminate
@@ -33,7 +33,7 @@ async function registerUser(){
     }
 }
 
-async function validateUser(username){
+async function validateUser(username:string){
     let response = await fetch(`https://marshes-scoring-api.herokuapp.com/users/${username}`,{
         method: 'GET'
     })
@@ -74,8 +74,8 @@ function intakeLoginData(){
 }
 
 let regData;
-let user;
-formButtons['register'].addEventListener('click', async e =>{
+let user: any;
+formButtons['register'].addEventListener('click', async (e: { preventDefault: () => void }) =>{
     e.preventDefault();
     if(await registerUser()){
         user = inputs.userRegistration.value
@@ -86,7 +86,7 @@ formButtons['register'].addEventListener('click', async e =>{
     return user
 })
 
-formButtons['login'].addEventListener('click', async e =>{
+formButtons['login'].addEventListener('click', async (e: { preventDefault: () => void }) =>{
     e.preventDefault();
     if(await validateUser(inputs.loginUser.value)){
         user = inputs.loginUser.value
