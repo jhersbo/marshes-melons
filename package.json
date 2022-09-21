@@ -4,7 +4,7 @@
     "description": "",
     "main": "primary.js",
     "scripts": {
-        "start": "live-server --port=9000",
+        "start": "live-server --port=3001",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
